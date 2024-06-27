@@ -12,13 +12,21 @@
         <label>Phone Number: </label>
         <input type="tel" required v-model="phNumber">
 
+        <label>User Name: </label>
+        <input type="text" required v-model="username">
+
         <label>Password: </label>
         <input type="password" required v-model="password">
         <div v-if="passwordError" class="error">{{ passwordError }}</div>
 
-        <label>Role: </label>
-        <select v-model="role">
-            <option v-for="role in roles" :value="role.roleid" :key="role.roleid">{{ role.Name }}</option>
+        <label>Department: </label>
+        <select v-model="department">
+            <option v-for="department in departments" :value="department.departmentid" :key="department.departmentid">{{ department.departmentname }}</option>
+        </select>
+
+        <label>Designation: </label>
+        <select v-model="designation">
+            <option v-for="designation in designations" :value="designation.designationid" :key="designation.designationid">{{ designation.designationname }}</option>
         </select>
 
         <div class="submit">
@@ -28,30 +36,40 @@
 </template>
 
 <script>
-import Vue from 'vue'
 import axios from 'axios'
-import VueAxios from 'vue-axios'
 export default{
     data() {
         return {
-            roles:[],
+            designations:[],
+            departments:[],
             email: '',
+            username:'',
             password:'',
             fName:'',
             lName:'',
-            role:'',
+            designation:'',
+            department:'',
             passwordError:'',
             phNumber:''
         }
     },
     created() {
-        this.getroles();
+        this.getdepartments();
+        this.getdesignations();
     },
     methods: {
-        async getroles(){
+        async getdepartments(){
             try{
-                const response = await axios.get('http://localhost:3000/api/roles');
-                this.roles=response.data;
+                const response = await axios.get('http://localhost:3000/departments');
+                this.departments=response.data;
+            }catch(err){
+                console.error(err);
+            }
+        },
+        async getdesignations(){
+            try{
+                const response = await axios.get('http://localhost:3000/designations');
+                this.designations=response.data;
             }catch(err){
                 console.error(err);
             }
