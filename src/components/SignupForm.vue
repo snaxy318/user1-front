@@ -1,7 +1,16 @@
 <template>
-    <form @submit.prevent="handleSubmit">
+    <form @submit.prevent="handleSubmit" method="post">
         <label>Email: </label>
         <input type="email" required v-model="email">
+
+        <label>First Name: </label>
+        <input type="text" required v-model="fName">
+
+        <label>Last Name: </label>
+        <input type="text" required v-model="lName">
+
+        <label>Phone Number: </label>
+        <input type="tel" required v-model="phNumber">
 
         <label>Password: </label>
         <input type="password" required v-model="password">
@@ -19,19 +28,45 @@
 </template>
 
 <script>
+import Vue from 'vue'
+import axios from 'axios'
+import VueAxios from 'vue-axios'
 export default{
     data() {
         return {
             email: '',
             password:'',
+            fname:'',
             role:'',
             passwordError:'',
+            phNumber:''
         }
     },
     methods: {
         handleSubmit() {
             console.log("heheh");
-            this.passwordError = this.password.length > 5 ? '':'Password should be atleast of length 6'
+            this.passwordError = this.password.length > 5 ? '' :'Password should be atleast of length 6';
+            user={
+                firstname:this.fname,
+                lastname:this.lname,
+                email:this.email,
+                usertypeid:this.role
+            };
+            this.axios.post("//users",this.user)
+            .then((result)=>{
+                console.warn(result);
+
+            });
+
+            //get user id
+
+            userCred={
+                // userid:
+                email:this.email,
+                mobile:this.phNumber,
+                password:this.password
+            }
+            this.axios.post("//usercredentials",this.userCred);
         }
     }
 
