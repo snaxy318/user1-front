@@ -1,18 +1,21 @@
 <template>
-    <form>
+    <form @submit.prevent="handleSubmit">
         <label>Email: </label>
         <input type="email" required v-model="email">
 
         <label>Password: </label>
         <input type="password" required v-model="password">
+        <div v-if="passwordError" class="error">{{ passwordError }}</div>
 
         <label>Role: </label>
         <select v-model="role">
             <option value="">{{ role }}</option>
         </select>
+
+        <div class="submit">
+            <button>Create User</button>
+        </div>
     </form>
-    <p>Email: {{ email }}</p>
-    <p>Password: {{ password }}</p>
 </template>
 
 <script>
@@ -21,7 +24,14 @@ export default{
         return {
             email: '',
             password:'',
-            role:''
+            role:'',
+            passwordError:'',
+        }
+    },
+    methods: {
+        handleSubmit() {
+            console.log("heheh");
+            this.passwordError = this.password.length > 5 ? '':'Password should be atleast of length 6'
         }
     }
 
@@ -53,5 +63,22 @@ input,select {
     box-sizing: border-box;
     border: 1px solid #131212;
     color: #555;
+}
+button {
+    background: rgb(67, 67, 241);
+    border: 0px;
+    padding: 10px 20px;
+    margin-top: 20px;
+    color: white;
+    border-radius: 20px;
+}
+.submit{
+    text-align: center;
+}
+.error {
+    color:rgb(196, 37, 37);
+    margin-top:10px;
+    font-size: 0.8em;
+    font-weight: bold;
 }
 </style>
