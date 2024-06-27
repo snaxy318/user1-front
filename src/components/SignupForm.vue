@@ -1,17 +1,34 @@
 <template>
     <form>
         <label>Email: </label>
-        <input type="email" required>
+        <input type="email" required v-model="email">
+
+        <label>Password: </label>
+        <input type="password" required v-model="password">
+
+        <label>Role: </label>
+        <select v-model="role">
+            <option value="">{{ role }}</option>
+        </select>
     </form>
+    <p>Email: {{ email }}</p>
+    <p>Password: {{ password }}</p>
 </template>
 
 <script>
 export default{
+    data() {
+        return {
+            email: '',
+            password:'',
+            role:''
+        }
+    }
 
 }
 </script>
 
-<style scoped>
+<style>
 form{
     max-width:420px;
     margin: 30px auto;
@@ -29,12 +46,12 @@ label {
     letter-spacing: 1px;
     font-weight: bold;
 }
-input {
+input,select {
     display: block;
     padding: 10px 6px;
     width: 100%;
     box-sizing: border-box;
-    border-bottom: 1px solid #ddd;
+    border: 1px solid #131212;
     color: #555;
 }
 </style>
