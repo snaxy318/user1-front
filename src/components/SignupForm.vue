@@ -18,7 +18,7 @@
 
         <label>Role: </label>
         <select v-model="role">
-            <option value="">{{ role }}</option>
+            <option v-for="role in roles" :value="role.roleid" :key="role.roleid">{{ role.Name }}</option>
         </select>
 
         <div class="submit">
@@ -34,15 +34,28 @@ import VueAxios from 'vue-axios'
 export default{
     data() {
         return {
+            roles:[],
             email: '',
             password:'',
-            fname:'',
+            fName:'',
+            lName:'',
             role:'',
             passwordError:'',
             phNumber:''
         }
     },
+    created() {
+        this.getroles();
+    },
     methods: {
+        async getroles(){
+            try{
+                const response = await axios.get('http://localhost:3000/api/roles');
+                this.roles=response.data;
+            }catch(err){
+                console.error(err);
+            }
+        },
         handleSubmit() {
             console.log("heheh");
             this.passwordError = this.password.length > 5 ? '' :'Password should be atleast of length 6';
@@ -59,6 +72,7 @@ export default{
             });
 
             //get user id
+            this.axios.get("")
 
             userCred={
                 // userid:
@@ -66,7 +80,11 @@ export default{
                 mobile:this.phNumber,
                 password:this.password
             }
-            this.axios.post("//usercredentials",this.userCred);
+            this.axios.post("//usercredentials",this.userCred)
+            .then((result)=>{
+                console.warn(result);
+
+            });
         }
     }
 
