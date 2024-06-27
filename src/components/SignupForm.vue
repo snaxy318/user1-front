@@ -1,13 +1,13 @@
 <template>
     <form @submit.prevent="handleSubmit" method="post">
         <label>Email: </label>
-        <input type="email" required v-model="email">
+        <input type="email" required v-model="email" >
 
         <label>First Name: </label>
         <input type="text" required v-model="fName">
 
         <label>Last Name: </label>
-        <input type="text" required v-model="lName">
+        <input type="text" required v-model="lName" >
 
         <label>Phone Number: </label>
         <input type="tel" required v-model="phNumber">
@@ -26,7 +26,7 @@
 
         <label>Designation: </label>
         <select v-model="designation">
-            <option v-for="designation in designations" :value="designation.designationid" :key="designation.designationid">{{ designation.designationname }}</option>
+            <option v-for="designation in designations" :value="designation.designationtid" :key="designation.designationtid">{{ designation.designationname }}</option>
         </select>
 
         <div class="submit">
@@ -50,7 +50,8 @@ export default{
             designation:'',
             department:'',
             passwordError:'',
-            phNumber:''
+            phNumber:'',
+            user:[]
         }
     },
     created() {
@@ -74,35 +75,31 @@ export default{
                 console.error(err);
             }
         },
-        handleSubmit() {
+        async handleSubmit() {
+            console.clear();
             console.log("heheh");
-            this.passwordError = this.password.length > 5 ? '' :'Password should be atleast of length 6';
-            user={
-                firstname:this.fname,
-                lastname:this.lname,
+            this.user = {firstname:this.fName,
+                lastname:this.lName,
                 email:this.email,
-                usertypeid:this.role
-            };
-            this.axios.post("//users",this.user)
-            .then((result)=>{
-                console.warn(result);
-
-            });
-
-            //get user id
-            this.axios.get("")
-
-            userCred={
-                // userid:
-                email:this.email,
+                departmentid:this.department,
+                designationid:this.designation,
                 mobile:this.phNumber,
-                password:this.password
-            }
-            this.axios.post("//usercredentials",this.userCred)
-            .then((result)=>{
-                console.warn(result);
+                username:this.username,
+                password:this.password};
+            console.log(this.user);
 
-            });
+            if (this.password.length < 6) {
+                this.passwordError = 'Password should be at least of length 6';
+                return;
+            }
+            this.passwordError='';
+    
+            try{
+                const result = await axios.post('http://localhost:3000/users/register',this.user);
+                console.warn(result);
+            }catch(err){
+                console.error(err);
+            }
         }
     }
 
