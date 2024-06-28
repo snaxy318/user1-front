@@ -78,7 +78,8 @@ export default{
         async handleSubmit() {
             console.clear();
             console.log("heheh");
-            this.user = {firstname:this.fName,
+            this.user = {
+                firstname:this.fName,
                 lastname:this.lName,
                 email:this.email,
                 departmentid:this.department,
@@ -86,7 +87,6 @@ export default{
                 mobile:this.phNumber,
                 username:this.username,
                 password:this.password};
-            console.log(this.user);
 
             if (this.password.length < 6) {
                 this.passwordError = 'Password should be at least of length 6';
@@ -94,10 +94,11 @@ export default{
             }
             this.passwordError='';
     
-            try{
+            try { 
                 const result = await axios.post('http://localhost:3000/users/register',this.user);
                 console.warn(result);
-            }catch(err){
+                alert("User has been created");
+            } catch(err){
                 console.error(err);
             }
         }
