@@ -1,0 +1,104 @@
+<template>
+    <NavUser/>
+    <form @submit.prevent="handleSubmit" method="post">
+        <label>Task Name: </label>
+        <input type="text" required v-model="taskName" >
+
+        <label>Date : </label>
+        <input type="date" required v-model="date">
+
+        <label>Working Hours </label>
+        <input type="number" required v-model="wHours" >
+
+        <label>Description: </label>
+        <input type="text"  v-model="description">
+
+
+        <div class="submit">
+            <button>Create Task</button>
+        </div>
+    </form>
+    <div>{{ error }}</div>
+</template>
+
+<script>
+import NavUser from './NavUser.vue'
+import axios from 'axios'
+export default{
+    components:{NavUser},
+    data() {
+        return {
+            taskName: '',
+            date:'',
+            wHours:'',
+            description:'',
+            type:[]
+        }
+    },
+    methods: {
+        async handleSubmit() {
+            console.clear();
+    
+            this.task = {
+                taskname:this.taskName,
+                taskdate:this.date,
+                workinghours:this.wHours,
+                description:this.description};
+    
+            try { 
+                const result = await axios.post('http://localhost:3000/tasks',this.task);
+                console.warn(result);
+                alert("Task has been created");
+            } catch(err){
+                console.error(err.message);
+            }
+        }
+    }
+
+}
+</script>
+
+<style>
+form{
+    max-width:420px;
+    margin: 30px auto;
+    background: white;
+    text-align:left;
+    padding: 40px;
+    border-radius:10px;
+}
+label {
+    color: #aaa;
+    display: inline-block;
+    margin: 25px 0 15px;
+    font-size: 0.6em;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: bold;
+}
+input,select {
+    display: block;
+    padding: 10px 6px;
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid #131212;
+    color: #555;
+}
+button {
+    background: rgb(67, 67, 241);
+    border: 0px;
+    padding: 10px 20px;
+    margin-top: 20px;
+    color: white;
+    border-radius: 20px;
+}
+.submit{
+    text-align: center;
+}
+.error {
+    color:rgb(196, 37, 37);
+    margin-top:10px;
+    font-size: 0.8em;
+    font-weight: bold;
+}
+</style>

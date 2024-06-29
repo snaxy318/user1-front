@@ -4,6 +4,7 @@ import SignupForm from '../components/SignupForm.vue'
 import Login from '../components/Login.vue'
 import HomeTask from '../components/HomeTask.vue'
 import UserDetails from '../components/UserDetails.vue'
+import CreateTask from '../components/CreateTask.vue'
 
 const routes = [
   
@@ -31,6 +32,11 @@ const routes = [
     path:'/user-details',
     name:'UserDetails',
     component: UserDetails
+  },
+  {
+    path:'/create-task',
+    name:'CreateTask',
+    component: CreateTask
   }
 ]
 
