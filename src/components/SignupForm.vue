@@ -52,8 +52,7 @@ export default{
             department:'',
             passwordError:'',
             phNumber:'',
-            user:[],
-            error:''
+            user:[]
         }
     },
     created() {
@@ -97,13 +96,12 @@ export default{
             this.passwordError='';
     
             try { 
-                // const result = await axios.post('http://localhost:3000/users/register',this.user);
-                console.warn(this.user);
+                const result = await axios.post('http://localhost:3000/users/register',this.user);
+                console.warn(result);
                 alert("User has been created");
                 this.$router.push('/login');
             } catch(err){
                 console.error(err);
-                this.err=err.message;
             }
         }
     }
