@@ -3,6 +3,7 @@ import Home from '../components/Home.vue'
 import SignupForm from '../components/SignupForm.vue'
 import Login from '../components/Login.vue'
 import HomeTask from '../components/HomeTask.vue'
+import UserDetails from '../components/UserDetails.vue'
 
 const routes = [
   
@@ -25,6 +26,11 @@ const routes = [
     path:'/task',
     name: 'HomeTask',
     component: HomeTask
+  },
+  {
+    path:'/user-details',
+    name:'UserDetails',
+    component: UserDetails
   }
 ]
 

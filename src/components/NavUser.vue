@@ -19,6 +19,6 @@
 
 <script>
     export default {
-        name: 'NavTask'
+        name: 'NavUser'
     }
 </script>
