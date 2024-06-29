@@ -26,9 +26,9 @@
                 username:'',
                 password:''
             }
-        },
-        method:{
-            async handelSubmit() {
+        }, 
+        methods:{
+            async handleSubmit() {
                 const response = await axios.post('http://localhost:3000/auth/login',{
                     username: this.username,
                     password: this.password
