@@ -33,6 +33,7 @@
             <button>Create User</button>
         </div>
     </form>
+    <div>{{ error }}</div>
 </template>
 
 <script>
@@ -51,7 +52,8 @@ export default{
             department:'',
             passwordError:'',
             phNumber:'',
-            user:[]
+            user:[],
+            error:''
         }
     },
     created() {
@@ -95,11 +97,13 @@ export default{
             this.passwordError='';
     
             try { 
-                const result = await axios.post('http://localhost:3000/users/register',this.user);
-                console.warn(result);
+                // const result = await axios.post('http://localhost:3000/users/register',this.user);
+                console.warn(this.user);
                 alert("User has been created");
+                this.$router.push('/login');
             } catch(err){
                 console.error(err);
+                this.err=err.message;
             }
         }
     }
