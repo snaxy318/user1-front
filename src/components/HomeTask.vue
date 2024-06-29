@@ -1,5 +1,6 @@
 <template>
     <p>
+        <NavTask/>
         Hello
         {{ hello.data }}
     </p>
@@ -7,8 +8,10 @@
 
 <script>
     import axios from "axios"
+    import NavUser from './NavUser.vue'
     export default{
         name:'HomeTask',
+        components:{NavUser},
         data(){
            return { hello:[]}
         },
