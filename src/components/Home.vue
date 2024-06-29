@@ -4,6 +4,9 @@
 
 <script>
     export default {
-        name: 'Home'
+        name: 'Home',
+        async created() {
+            const response = await axios.get('user');
+        }
     }
 </script>
