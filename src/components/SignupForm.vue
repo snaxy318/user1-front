@@ -1,4 +1,5 @@
 <template>
+    <Nav/>
     <form @submit.prevent="handleSubmit" method="post">
         <label>Email: </label>
         <input type="email" required v-model="email" >
@@ -37,8 +38,10 @@
 </template>
 
 <script>
+import Nav from './Nav.vue'
 import axios from 'axios'
 export default{
+    components:{Nav},
     data() {
         return {
             designations:[],

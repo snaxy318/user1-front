@@ -1,4 +1,5 @@
 <template>
+    <Nav/>
     <form @submit.prevent="handleSubmit">
         <h3>Login</h3>
 
@@ -18,9 +19,14 @@
 </template>
 
 <script>
+    import Nav from './Nav.vue'
     import axios from 'axios';
     export default {
-        name:'Login',
+        name:'Login'
+        ,
+        components: {
+            Nav,
+        },
         data () {
             return {
                 username:'',
@@ -35,6 +41,7 @@
                 });
 
                 localStorage.setItem('token',response.data.token);
+                this.$router.push('/task');
             }
         }
     }
