@@ -1,5 +1,5 @@
 <template>
-    <nav class="navbar navbar-expand navbar-light fixed-top">
+    <nav class="navbar navbar-expand navbar-light fixed-top bg-dark" data-bs-theme="dark">
         <div class="container">
             <a href="/user-details" class="navbar-brand">User Details</a>
             <div class="collapse navbar-collapse">
