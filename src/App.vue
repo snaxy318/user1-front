@@ -1,17 +1,10 @@
 <template>
-  <!-- <SignupForm/> -->
-  <Login/>
+  <router-view/>
 </template>
 
 <script>
-// import SignupForm from './components/SignupForm.vue';
-import Login from './components/AddTask.vue'
 export default {
-  name: 'App',
-  components: {
-    // SignupForm,
-    Login
-  }
+  name: 'App'
 }
 </script>
 
