@@ -4,14 +4,14 @@
         <h3>Login</h3>
 
         <div class="form-group">
-            <label>Username</label>
-            <input type="text" class="form-control" v-model="username" placeholder="Username">
+            <label for="username">Username</label>
+            <input id="username" type="text" class="form-control" v-model="username" placeholder="Username">
 
         </div>
 
         <div class="form-group">
-            <label>Password</label>
-            <input type="password" class="form-control" v-model="password" placeholder="Password">
+            <label for="password">Password</label>
+            <input id="password" type="password" class="form-control" v-model="password" placeholder="Password">
         </div>
 
         <button class="btn btn-primary btn-block">Login</button>
