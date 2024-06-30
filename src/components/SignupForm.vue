@@ -1,32 +1,32 @@
 <template>
     <Nav/>
     <form @submit.prevent="handleSubmit" method="post">
-        <label>Email: </label>
-        <input type="email" required v-model="email" >
+        <label for="email">Email: </label>
+        <input type="email" id="email" required v-model="email" >
 
-        <label>First Name: </label>
-        <input type="text" required v-model="fName">
+        <label for="fname">First Name: </label>
+        <input type="text" id="fname" required v-model="fName">
 
-        <label>Last Name: </label>
-        <input type="text" required v-model="lName" >
+        <label for="lname">Last Name: </label>
+        <input type="text" id="lname" required v-model="lName" >
 
-        <label>Phone Number: </label>
-        <input type="tel" required v-model="phNumber">
+        <label for="number">Phone Number: </label>
+        <input type="tel" id="number" required v-model="phNumber">
 
-        <label>User Name: </label>
-        <input type="text" required v-model="username">
+        <label for="username">User Name: </label>
+        <input type="text" id="username" required v-model="username">
 
-        <label>Password: </label>
-        <input type="password" required v-model="password">
+        <label for="password">Password: </label>
+        <input type="password" id="password" required v-model="password">
         <div v-if="passwordError" class="error">{{ passwordError }}</div>
 
-        <label>Department: </label>
-        <select v-model="department">
+        <label for="department">Department: </label>
+        <select id="department" v-model="department">
             <option v-for="department in departments" :value="department.departmentid" :key="department.departmentid">{{ department.departmentname }}</option>
         </select>
 
-        <label>Designation: </label>
-        <select v-model="designation">
+        <label for="designation" >Designation: </label>
+        <select id="designaiton" v-model="designation">
             <option v-for="designation in designations" :value="designation.designationtid" :key="designation.designationtid">{{ designation.designationname }}</option>
         </select>
 
