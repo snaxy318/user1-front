@@ -1,17 +1,17 @@
 <template>
     <NavUser/>
     <form @submit.prevent="handleSubmit" method="post">
-        <label>Task Name: </label>
-        <input type="text" required v-model="taskName" >
+        <label for="taskname">Task Name: </label>
+        <input type="text" id="taskname" required v-model="taskName" >
 
-        <label>Date : </label>
-        <input type="date" required v-model="date">
+        <label for="date">Date : </label>
+        <input id="date" type="date" required v-model="date">
 
-        <label>Working Hours </label>
-        <input type="number" required v-model="wHours" >
+        <label for="wHours">Working Hours </label>
+        <input id="wHours" type="number" required v-model="wHours" >
 
-        <label>Description: </label>
-        <input type="text"  v-model="description">
+        <label for="description">Description: </label>
+        <input id="description" type="text"  v-model="description">
 
 
         <div class="submit">
