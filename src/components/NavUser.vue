@@ -11,6 +11,11 @@
                         <a href="/create-task" class="nav-link">Create Task</a>
                     </li>
                 </ul>
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <button class="btn btn-danger" @click="logout">Logout</button>
+                    </li>
+                </ul>
             </div>
         </div>
 
@@ -22,3 +27,11 @@
         name: 'NavUser'
     }
 </script>
+
+<style scoped>
+/* Add any relevant styling here */
+.nav-item button {
+    margin-top: 0px;
+    margin-right: 20px;
+}
+</style>
